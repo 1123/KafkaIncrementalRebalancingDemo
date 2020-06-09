@@ -2,6 +2,8 @@
 
 Kafka Cooperative Incremental Rebalancing avoids unnecessary revocations of partitions from Kafka consumer instances. This is in contrast to the tradditional management of partition assignments with the RangeAssignor, which is enabled by default. This project helps to better understand the differences by trying things out. 
 
+![Image of Yaktocat](docs/screenshot.png)
+
 ### Prerequistes:
 
 * `mvn` command line tool
