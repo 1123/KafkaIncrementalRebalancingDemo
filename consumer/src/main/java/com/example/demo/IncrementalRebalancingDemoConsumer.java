@@ -9,10 +9,10 @@ import org.springframework.kafka.core.ConsumerFactory;
 
 @EnableKafka
 @SpringBootApplication
-public class DemoApplication {
+public class IncrementalRebalancingDemoConsumer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(IncrementalRebalancingDemoConsumer.class, args);
 	}
 
 	@Bean
