@@ -33,15 +33,15 @@ public class IncrementalRebalancingDemoProducer {
 
 	@Autowired
 	public IncrementalRebalancingDemoProducer(
-			@Value("${producer.num.messages}") int numMessages,
-			@Value("${producer.payload.characters}") int payloadCharacters,
+			@Value("${PRODUCER_NUM_MESSAGES}") int numMessages,
+			@Value("${PRODUCER_PAYLOAD_CHARACTERS}") int payloadCharacters,
 			KafkaTemplate<String, String> kafkaTemplate) {
 		this.numMessages = numMessages;
 		this.kafkaTemplate = kafkaTemplate;
 		this.payloadCharacters = payloadCharacters;
 	}
 
-	@Scheduled(initialDelay = 100, fixedDelayString = "${producer.fixed.delay.ms}")
+	@Scheduled(initialDelay = 100, fixedDelayString = "${PRODUCER_FIXED_DELAY_MS}")
 	public void produce() {
 		String payload = RandomStringUtils.randomAlphabetic(payloadCharacters);
 		log.info("Sending {} messages with payload size {}", numMessages, payload.getBytes(StandardCharsets.UTF_8).length);
