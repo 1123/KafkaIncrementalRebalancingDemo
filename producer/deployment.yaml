@@ -16,7 +16,9 @@ spec:
         app: incremental-rebalancing-producer-app
     spec:
       containers:
-      - env:
+        env:
+        - name: PRODUCER_FIXED_DELAY_MS
+          value: "10"
         image: gcr.io/solutionsarchitect-01/incremental-rebalancing-producer-app
         name: incremental-rebalancing-producer-app
 

@@ -27,7 +27,7 @@ public class IncrementalRebalancingDemoProducer {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
-	@Scheduled(initialDelay = 100, fixedDelay = 100)
+	@Scheduled(initialDelay = 100, fixedDelayString = "${producer.fixed.delay.ms}")
 	public void produce() {
 		log.info("Sending some data");
 		kafkaTemplate.send("test-topic", UUID.randomUUID().toString(), new SimpleDateFormat().format(new Date()));
