@@ -16,9 +16,20 @@ spec:
         app: incremental-rebalancing-producer-app
     spec:
       containers:
+      - name: incremental-rebalancing-producer-app
+        image: gcr.io/solutionsarchitect-01/incremental-rebalancing-producer-app
         env:
+        - name: PRODUCER_NUM_MESSAGES
+          value: "50"
         - name: PRODUCER_FIXED_DELAY_MS
           value: "10"
-        image: gcr.io/solutionsarchitect-01/incremental-rebalancing-producer-app
-        name: incremental-rebalancing-producer-app
+        - name: PRODUCER_PAYLOAD_CHARACTERS
+          value: "50"
+        resources: 
+          requests: 
+            memory: "100m"
+            cpu: "100m"
+          limits:
+            memory: "250m"
+            cpu: "250m"
 

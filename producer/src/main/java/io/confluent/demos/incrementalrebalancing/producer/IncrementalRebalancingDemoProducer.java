@@ -1,7 +1,9 @@
 package io.confluent.demos.incrementalrebalancing.producer;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -9,7 +11,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -20,17 +21,32 @@ import java.util.UUID;
 @Slf4j
 public class IncrementalRebalancingDemoProducer {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(IncrementalRebalancingDemoProducer.class, args);
 	}
 
+	private final int numMessages;
+	private final KafkaTemplate<String, String> kafkaTemplate;
+	private final int payloadCharacters;
+
 	@Autowired
-	private KafkaTemplate<String, String> kafkaTemplate;
+	public IncrementalRebalancingDemoProducer(
+			@Value("${producer.num.messages}") int numMessages,
+			@Value("${producer.payload.characters}") int payloadCharacters,
+			KafkaTemplate<String, String> kafkaTemplate) {
+		this.numMessages = numMessages;
+		this.kafkaTemplate = kafkaTemplate;
+		this.payloadCharacters = payloadCharacters;
+	}
 
 	@Scheduled(initialDelay = 100, fixedDelayString = "${producer.fixed.delay.ms}")
 	public void produce() {
-		log.info("Sending some data");
-		kafkaTemplate.send("test-topic", UUID.randomUUID().toString(), new SimpleDateFormat().format(new Date()));
+		String payload = RandomStringUtils.randomAlphabetic(payloadCharacters);
+		log.info("Sending {} messages", numMessages);
+		for (int i = 0; i < numMessages; i++) {
+			kafkaTemplate.send("test-topic", UUID.randomUUID().toString(), payload);
+		}
 	}
 }
 
