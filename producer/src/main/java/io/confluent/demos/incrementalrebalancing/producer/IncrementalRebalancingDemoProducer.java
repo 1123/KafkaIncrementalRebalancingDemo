@@ -11,6 +11,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -43,7 +44,7 @@ public class IncrementalRebalancingDemoProducer {
 	@Scheduled(initialDelay = 100, fixedDelayString = "${producer.fixed.delay.ms}")
 	public void produce() {
 		String payload = RandomStringUtils.randomAlphabetic(payloadCharacters);
-		log.info("Sending {} messages", numMessages);
+		log.info("Sending {} messages with payload size {}", numMessages, payload.getBytes(StandardCharsets.UTF_8).length);
 		for (int i = 0; i < numMessages; i++) {
 			kafkaTemplate.send("test-topic", UUID.randomUUID().toString(), payload);
 		}
