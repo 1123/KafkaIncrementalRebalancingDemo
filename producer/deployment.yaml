@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: incremental-rebalancing-producer-app
+  name: incremental-rebalancing-producer-app
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: incremental-rebalancing-producer-app
+  template:
+    metadata:
+      labels:
+        app: incremental-rebalancing-producer-app
+    spec:
+      containers:
+      - env:
+        image: gcr.io/solutionsarchitect-01/incremental-rebalancing-producer-app
+        name: incremental-rebalancing-producer-app
+

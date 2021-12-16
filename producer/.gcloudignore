@@ -1,0 +1,6 @@
+target/classes
+src/
+target/demo-producer-0.0.1-SNAPSHOT.jar.original
+*.sh
+target/maven*
+
