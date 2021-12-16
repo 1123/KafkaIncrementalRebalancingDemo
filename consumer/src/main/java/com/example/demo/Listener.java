@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class Listener {
 
-    @KafkaListener(topics = "test-topic", containerFactory = "concurrentKafkaListenerContainerFactory")
+    @KafkaListener(topics = "test-topic")
     public void listen(ConsumerRecord<?, ?> cr) {
-        log.info(cr.toString());
+        if (cr.offset() % 100 == 0) { log.info(cr.toString()); }
     }
 
 }

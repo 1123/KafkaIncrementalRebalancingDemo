@@ -15,14 +15,6 @@ public class IncrementalRebalancingDemoConsumer {
 		SpringApplication.run(IncrementalRebalancingDemoConsumer.class, args);
 	}
 
-	@Bean
-	public ConcurrentKafkaListenerContainerFactory<String, String> concurrentKafkaListenerContainerFactory (
-			ConsumerFactory<String , String> consumerFactory) {
-		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-		factory.setConsumerFactory(consumerFactory);
-		factory.setConcurrency(5);
-		return factory;
-	}
 }
 
 

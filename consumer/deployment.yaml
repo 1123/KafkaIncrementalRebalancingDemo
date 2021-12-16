@@ -6,7 +6,7 @@ metadata:
   name: incremental-rebalancing-consumer
   namespace: default
 spec:
-  replicas: 3
+  replicas: 10 
   selector:
     matchLabels:
       app: incremental-rebalancing-consumer
@@ -19,4 +19,11 @@ spec:
       - env:
         image: gcr.io/solutionsarchitect-01/incremental-rebalancing-consumer
         name: incremental-rebalancing-consumer
+        resources:
+          requests:
+            memory: "200m"
+            cpu: "250m"
+          limits:
+            memory: "500m"
+            cpu: "500m"
 
