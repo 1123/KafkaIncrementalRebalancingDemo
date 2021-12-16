@@ -2,3 +2,4 @@ cloudbuild.yaml
 target
 client.properties
 demo-consumer.iml
+cloudbuild
