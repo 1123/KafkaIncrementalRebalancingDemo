@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/<Your_GCP_project>/spring-kafka-cce-sample-app', '.' ]
+images:
+- 'gcr.io/<your_GCP_project>/spring-kafka-cce-sample-app'

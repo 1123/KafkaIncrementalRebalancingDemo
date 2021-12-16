@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: incremental-rebalancing-consumer
+  name: incremental-rebalancing-consumer
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: incremental-rebalancing-consumer
+  template:
+    metadata:
+      labels:
+        app: incremental-rebalancing-consumer
+    spec:
+      containers:
+      - env:
+        image: gcr.io/solutionsarchitect-01/incremental-rebalancing-consumer
+        name: incremental-rebalancing-consumer
+
