@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e -u 
+
 confluent kafka topic create \
   test-topic \
-  --partitions 100 
+  --partitions $1

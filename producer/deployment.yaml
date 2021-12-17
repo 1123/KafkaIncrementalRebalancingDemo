@@ -20,7 +20,7 @@ spec:
         image: gcr.io/solutionsarchitect-01/incremental-rebalancing-producer-app
         env:
         - name: PRODUCER_NUM_MESSAGES
-          value: "5"
+          value: "500"
         - name: PRODUCER_FIXED_DELAY_MS
           value: "10"
         - name: PRODUCER_PAYLOAD_CHARACTERS

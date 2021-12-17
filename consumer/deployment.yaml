@@ -6,7 +6,7 @@ metadata:
   name: incremental-rebalancing-consumer
   namespace: default
 spec:
-  replicas: 5 
+  replicas: 302
   selector:
     matchLabels:
       app: incremental-rebalancing-consumer
@@ -20,7 +20,7 @@ spec:
         image: gcr.io/solutionsarchitect-01/incremental-rebalancing-consumer
         env:
         - name: MESSAGE_CONSUME_DELAY_MS
-          value: "10"
+          value: "12"
         resources:
           requests:
             memory: "200m"
