@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$GCP_ACCOUNT/incremental-rebalancing-producer-app', '.' ]
+images:
+- 'gcr.io/$GCP_ACCOUNT/incremental-rebalancing-producer-app'
